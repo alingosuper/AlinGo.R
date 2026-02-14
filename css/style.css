@@ -1,0 +1,58 @@
+body {
+  margin: 0;
+  max-width: 480px;
+  margin: auto;
+  background: black;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(0,255,0,0.08) 0px,
+    rgba(0,255,0,0.08) 2px,
+    transparent 2px,
+    transparent 20px
+  );
+  animation: moveBg 8s linear infinite;
+  z-index: -1;
+}
+
+@keyframes moveBg {
+  from { transform: translate(0,0); }
+  to { transform: translate(-200px,-200px); }
+}
+
+.glow-text {
+    color: #00ff00;
+    text-shadow: 0 0 10px #00ff00;
+    text-align: center;
+}
+
+.btn {
+  background: black;
+  color: white;
+  padding: 12px;
+  width: 100%;
+  border-radius: 8px;
+  border: 2px solid #00ff00;
+  box-shadow: 0 0 8px #00ff00, 0 0 20px rgba(0,255,0,0.4);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  box-shadow: 0 0 15px #00ff00, 0 0 30px #00ff00;
+}
+
+.logo {
+    display: block;
+    margin: 20px auto;
+    width: 80px;
+}
