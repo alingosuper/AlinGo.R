@@ -150,3 +150,23 @@ body::before {
     padding: 50px;
     color: #00ff00;
 }
+
+
+#p-desc {
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 8px;
+    width: 95%;
+    outline: none;
+    font-family: inherit;
+}
+
+#seller-form .input-group {
+    margin-bottom: 15px;
+}
+
+/* ٹیکسٹ ایریا کو بھی گلو دیں */
+#p-desc:focus {
+    border-color: #00ff00;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+}
