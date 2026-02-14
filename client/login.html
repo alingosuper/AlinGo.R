@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlinGo | لاگ ان</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="login-container">
+        <img src="/public/logo.png" alt="AlinGo" class="app-logo">
+        <h2 class="glow-text">خوش آمدید</h2>
+        <p style="text-align: center; font-size: 0.9em; color: #888;">جاری رکھنے کے لیے اپنا فون نمبر درج کریں</p>
+
+        <div id="phone-section">
+            <div class="input-group">
+                <span class="prefix">+92</span>
+                <input type="tel" id="phone-number" placeholder="3001234567" maxlength="10">
+            </div>
+            <button id="send-otp-btn" class="btn">OTP بھیجیں ⚡</button>
+        </div>
+
+        <div id="otp-section" style="display: none; margin-top: 20px;">
+            <input type="number" id="otp-code" class="otp-input" placeholder="- - - - - -">
+            <button id="verify-otp-btn" class="btn">تصدیق کریں ✅</button>
+        </div>
+
+        <div id="recaptcha-container"></div>
+    </div>
+
+    <script type="module" src="js/auth.js"></script>
+</body>
+</html>
