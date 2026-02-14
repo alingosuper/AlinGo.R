@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "name": "alingo-marketplace",
+  "builds": [
+    { "src": "server/server.js", "use": "@vercel/node" },
+    { "src": "client/**", "use": "@vercel/static" }
+  ],
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/client/index.html" }
+  ]
+}
