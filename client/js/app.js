@@ -64,3 +64,18 @@ window.orderNow = (productId) => {
 
 // لوڈنگ شروع کریں
 fetchProducts();
+
+
+
+// ڈیمو ڈیٹا اگر ڈیٹا بیس خالی ہو
+const demoProducts = [
+    { name: "Motherboard", price: "15,000", image: "https://via.placeholder.com/150/000000/00FF00?text=Electronics" },
+    { name: "Electric Scooter", price: "75,000", image: "https://via.placeholder.com/150/000000/00FF00?text=Scooter" },
+    { name: "Gaming Headset", price: "8,000", image: "https://via.placeholder.com/150/000000/00FF00?text=Headset" },
+    { name: "Power Bank", price: "4,500", image: "https://via.placeholder.com/150/000000/00FF00?text=PowerBank" }
+];
+
+// اگر Firebase سے ڈیٹا نہ ملے تو یہ دکھائیں
+function showDemo() {
+    demoProducts.forEach(p => renderProduct(p, 'demo'));
+}
