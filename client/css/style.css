@@ -4,7 +4,7 @@ body {
   margin: auto;
   background: black;
   color: white;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   overflow-x: hidden;
 }
 
@@ -35,24 +35,30 @@ body::before {
     text-align: center;
 }
 
-.btn {
-  background: black;
-  color: white;
-  padding: 12px;
-  width: 100%;
-  border-radius: 8px;
-  border: 2px solid #00ff00;
-  box-shadow: 0 0 8px #00ff00, 0 0 20px rgba(0,255,0,0.4);
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.btn:hover {
-  box-shadow: 0 0 15px #00ff00, 0 0 30px #00ff00;
-}
-
-.logo {
+/* یہاں کلاس کا نام درست کر دیا گیا ہے */
+.app-logo {
     display: block;
     margin: 20px auto;
     width: 80px;
+    filter: drop-shadow(0 0 5px #00ff00);
+}
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    background: rgba(0, 0, 0, 0.9);
+    border-top: 1px solid #00ff00;
+    padding: 10px 0;
+}
+
+.nav-item {
+    flex: 1;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
 }
