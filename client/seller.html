@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlinGo | سیلر پینل</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <img src="/public/logo.png" alt="Logo" class="app-logo">
+            <h2 class="glow-text">نئی پروڈکٹ شامل کریں</h2>
+        </header>
+
+        <form id="seller-form" class="login-container">
+            <div class="input-group">
+                <input type="text" id="p-name" placeholder="پروڈکٹ کا نام" required>
+            </div>
+            <div class="input-group">
+                <input type="number" id="p-price" placeholder="قیمت (Rs)" required>
+            </div>
+            <div class="input-group">
+                <input type="text" id="p-img" placeholder="تصویر کا لنک (URL)">
+            </div>
+            <textarea id="p-desc" class="input-group" style="height:100px; padding:10px; color:white;" placeholder="پروڈکٹ کی تفصیل"></textarea>
+            
+            <button type="submit" class="btn">مارکیٹ میں لائیو کریں 🚀</button>
+        </form>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+
+        // آپ کی Firebase Config
+        const firebaseConfig = { /* ... وہی پرانی کیز ... */ };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        document.getElementById('seller-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            btn.innerText = "اپلوڈنگ...";
+
+            try {
+                await addDoc(collection(db, "products"), {
+                    name: document.getElementById('p-name').value,
+                    price: document.getElementById('p-price').value,
+                    image: document.getElementById('p-img').value || "/public/logo.png",
+                    description: document.getElementById('p-desc').value,
+                    createdAt: Date.now()
+                });
+                alert("پروڈکٹ کامیابی سے شامل ہوگئی!");
+                window.location.href = "index.html";
+            } catch (error) {
+                alert("خرابی: " + error.message);
+            }
+        });
+    </script>
+</body>
+</html>
