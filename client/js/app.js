@@ -3,7 +3,7 @@ import { getFirestore, collection, getDocs } from "https://www.gstatic.com/fireb
 
 let db;
 const productList = document.getElementById('product-list');
-const LOGO_PATH = "/logoa.png";
+const LOGO_PATH = "/logo.png";
 
 async function startApp() {
     try {
