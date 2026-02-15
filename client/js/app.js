@@ -3,7 +3,7 @@ import { getFirestore, collection, getDocs } from "https://www.gstatic.com/fireb
 
 let db;
 const productList = document.getElementById('product-list');
-const LOGO_PATH = "/logo.png";
+const DEFAULT_LOGO = "/logo.png"; 
 
 async function startApp() {
     try {
@@ -12,26 +12,30 @@ async function startApp() {
         const app = initializeApp(config);
         db = getFirestore(app);
         fetchProducts();
-    } catch (err) { console.error("Error:", err); }
+    } catch (err) { console.error("Connection Error:", err); }
 }
 
 async function fetchProducts() {
     const querySnapshot = await getDocs(collection(db, "products"));
-    productList.innerHTML = "";
-    querySnapshot.forEach((doc) => {
-        const data = doc.data();
-        const card = document.createElement('div');
-        card.className = 'product-card';
-        card.innerHTML = `
-            <img src="${data.image || LOGO_PATH}" style="width:100%; height:110px; object-fit:cover;">
-            <div style="padding:8px;">
-                <h4 style="margin:0; font-size:0.85rem;">${data.name}</h4>
-                <p style="color:#39FF14; font-weight:bold; margin:4px 0;">Rs. ${data.price}</p>
-                <button class="btn" onclick="orderNow('${doc.id}')">خریدیں ⚡</button>
-            </div>`;
-        productList.appendChild(card);
-    });
+    if (!querySnapshot.empty) {
+        productList.innerHTML = "";
+        querySnapshot.forEach((doc) => {
+            renderProduct(doc.data(), doc.id);
+        });
+    }
 }
 
-window.orderNow = (id) => { location.href = `login.html?pid=${id}`; };
+function renderProduct(data, id) {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.innerHTML = `
+        <img src="${data.image || DEFAULT_LOGO}" class="product-img">
+        <div class="product-info">
+            <h3>${data.name}</h3>
+            <p class="price">Rs. ${data.price}</p>
+            <button class="btn" onclick="location.href='login.html?pid=${id}'">Buy Now</button>
+        </div>`;
+    productList.appendChild(card);
+}
+
 startApp();
