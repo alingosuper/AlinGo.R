@@ -2,23 +2,47 @@ const express = require('express');
 const app = express();
 app.use(express.json());
 
-const otps = {}; // عارضی میموری
+// Temporary in-memory storage
+const otps = {}; 
+const orders = [];
 
-// OTP بھیجنے کا روٹ
+// 📱 Route to send OTP (Demo Version)
 app.post('/api/send-otp', (req, res) => {
-    const { phone } = req.body;
-    const otp = Math.floor(100000 + Math.random() * 900000);
-    otps[phone] = otp;
-    res.json({ success: true, otp }); // ڈیمو کیلئے OTP واپس بھیج رہے ہیں
+    try {
+        const { phone } = req.body;
+        if (!phone) return res.status(400).json({ success: false, message: "Phone number is required" });
+
+        const otp = Math.floor(100000 + Math.random() * 900000);
+        otps[phone] = otp;
+
+        console.log(`OTP for ${phone}: ${otp}`); // Server console log
+        res.json({ success: true, otp, message: "OTP sent successfully (Demo)" });
+    } catch (err) {
+        res.status(500).json({ success: false, error: err.message });
+    }
 });
 
-// آرڈر جنریشن
+// 📦 Route to Create Order
 app.post('/api/create-order', (req, res) => {
-    const orderId = "AL-" + Date.now();
-    res.json({ success: true, orderId });
+    try {
+        const orderData = req.body;
+        const orderId = "AL-" + Date.now(); // Unique Order ID [cite: 2026-02-14]
+        
+        const newOrder = {
+            orderId: orderId,
+            ...orderData,
+            status: "Pending",
+            timestamp: new Date()
+        };
+
+        orders.push(newOrder); // Store in memory
+        res.json({ success: true, orderId, message: "Order placed successfully!" });
+    } catch (err) {
+        res.status(500).json({ success: false, error: err.message });
+    }
 });
 
-// فائر بیس کیز فراہم کرنا (Vercel Env سے)
+// 🔥 Firebase Configuration Route
 app.get('/api/get-firebase-config', (req, res) => {
     res.json({
         apiKey: process.env.NEXTH_FIREBASE_API_KEY,
