@@ -1,8 +1,8 @@
-/* ⚡ AlinGo Electric Green Master Theme - Updated Zigzag Lightning */
+/* ⚡ AlinGo Ajrak Blue Theme */
 :root {
   --neon-green: #39FF14;
   --deep-black: #0a0a0a;
-  --electric-glow: rgba(57, 255, 20, 0.3);
+  --ajrak-blue: rgba(173, 216, 230, 0.05); /* بہت دھیما نیلا */
 }
 
 body {
@@ -12,12 +12,11 @@ body {
   background: var(--deep-black);
   color: white;
   font-family: 'Segoe UI', sans-serif;
-  overflow-x: hidden;
   position: relative;
   min-height: 100vh;
 }
 
-/* ⚡ آڑھی ٹیڑھی بجلی والا بیک گراؤنڈ */
+/* 🖼️ دھیما نیلے رنگ کا اجرک بیک گراؤنڈ */
 body::before {
   content: "";
   position: fixed;
@@ -25,148 +24,54 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  /* آڑھی ٹیڑھی لکیروں کے لیے مکسڈ گریڈینٹ */
+  /* اجرک جیسا جیومیٹرک پیٹرن */
   background-image: 
-    linear-gradient(115deg, transparent 20%, var(--neon-green) 21%, var(--neon-green) 22%, transparent 23%),
-    linear-gradient(245deg, transparent 40%, var(--neon-green) 41%, var(--neon-green) 42%, transparent 43%),
-    linear-gradient(115deg, transparent 70%, var(--neon-green) 71%, var(--neon-green) 72%, transparent 73%);
-  background-size: 400% 400%;
-  opacity: 0.12;
-  filter: blur(1px) contrast(150%);
-  animation: lightningStrike 6s ease-in-out infinite;
+    radial-gradient(circle at 50% 50%, var(--ajrak-blue) 2px, transparent 2px),
+    linear-gradient(45deg, var(--ajrak-blue) 1px, transparent 1px);
+  background-size: 30px 30px, 60px 60px;
+  opacity: 0.4;
   z-index: -1;
   pointer-events: none;
-}
-
-/* بجلی چمکنے والی اینیمیشن */
-@keyframes lightningStrike {
-  0%, 100% { background-position: 0% 0%; opacity: 0.05; }
-  50% { background-position: 100% 100%; opacity: 0.15; }
-  52% { opacity: 0.3; filter: blur(2px) brightness(2); } /* اچانک چمک کا جھٹکا */
-  54% { opacity: 0.15; filter: blur(1px); }
-}
-
-/* ⚡ گلو ٹیکسٹ اور لوگو */
-.glow-text {
-    color: var(--neon-green);
-    text-shadow: 0 0 15px var(--neon-green);
-    text-align: center;
-    font-weight: bold;
-    text-transform: uppercase;
 }
 
 .app-logo {
     display: block;
     margin: 20px auto;
     width: 80px;
-    filter: drop-shadow(0 0 12px var(--neon-green));
+    filter: drop-shadow(0 0 10px var(--neon-green));
 }
 
-/* ⚡ ان پٹ گروپس اور فارمز */
-.input-group {
-    display: flex;
-    align-items: center;
+.product-card {
     background: rgba(20, 20, 20, 0.9);
-    border: 1px solid #333;
-    border-radius: 12px;
-    margin: 15px 0;
-    padding: 5px 15px;
+    border: 1px solid rgba(57, 255, 20, 0.2);
+    border-radius: 15px;
+    text-align: center;
     transition: 0.3s;
 }
 
-.input-group:focus-within {
-    border-color: var(--neon-green);
-    box-shadow: 0 0 15px var(--electric-glow);
-}
-
-.input-group input {
-    background: transparent;
-    border: none;
-    color: white;
-    padding: 12px;
-    width: 100%;
-    font-size: 1.1em;
-    outline: none;
-}
-
-/* ⚡ پروڈکٹ کارڈز ڈیزائن */
-.product-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--electric-glow);
-    border-radius: 15px;
-    overflow: hidden;
-    text-align: center;
-    transition: 0.3s ease;
-    backdrop-filter: blur(5px);
-}
-
-.product-card:hover {
-    border-color: var(--neon-green);
-    box-shadow: 0 0 20px var(--electric-glow);
-    transform: translateY(-5px);
-}
-
-.price {
-    color: var(--neon-green);
-    font-weight: bold;
-    text-shadow: 0 0 8px rgba(57, 255, 20, 0.6);
-}
-
-/* ⚡ الیکٹرک بٹن */
 .btn {
     background: transparent;
     color: var(--neon-green);
     border: 1px solid var(--neon-green);
-    padding: 12px;
-    border-radius: 10px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
     width: 100%;
-    text-transform: uppercase;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
 .btn:hover {
     background: var(--neon-green);
     color: black;
-    box-shadow: 0 0 20px var(--neon-green);
 }
 
-/* ⚡ باٹم نیویگیشن */
 .bottom-nav {
     position: fixed;
     bottom: 0;
-    left: 0;
-    right: 0;
     max-width: 480px;
-    margin: auto;
-    background: rgba(0, 0, 0, 0.9);
+    width: 100%;
+    background: #000;
     display: flex;
     justify-content: space-around;
     padding: 15px 0;
-    border-top: 1px solid var(--electric-glow);
-    backdrop-filter: blur(15px);
-}
-
-.nav-item {
-    background: none;
-    border: none;
-    color: #888;
-    font-size: 0.85em;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.nav-item:hover {
-    color: var(--neon-green);
-    text-shadow: 0 0 8px var(--neon-green);
-}
-
-/* پروڈکٹ گرڈ سیٹنگ */
-.product-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    padding: 15px;
-    padding-bottom: 100px;
+    border-top: 1px solid rgba(57, 255, 20, 0.2);
 }
