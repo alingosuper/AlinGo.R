@@ -1,7 +1,7 @@
 {
   "version": 2,
   "routes": [
-    { "src": "/logoa.png", "dest": "/public/logoa.png" },
+    { "src": "/logo.png", "dest": "/public/logo.png" },
     { "src": "/api/(.*)", "dest": "/server/server.js" },
     { "src": "/css/(.*)", "dest": "/client/css/$1" },
     { "src": "/js/(.*)", "dest": "/client/js/$1" },
