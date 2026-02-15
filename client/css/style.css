@@ -9,12 +9,12 @@ body {
   max-width: 480px;
   background: var(--deep-black);
   color: white;
-  font-family: 'Segoe UI', Arial, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   min-height: 100vh;
   position: relative;
+  overflow-x: hidden;
 }
 
-/* Ajrak Background */
 body::before {
   content: "";
   position: fixed;
@@ -29,8 +29,14 @@ body::before {
 .app-logo {
   display: block;
   margin: 15px auto;
-  width: 75px;
+  width: 70px;
   filter: drop-shadow(0 0 8px var(--neon-green));
+}
+
+.glow-text {
+  color: var(--neon-green);
+  text-shadow: 0 0 10px var(--neon-green);
+  text-align: center;
 }
 
 .product-grid {
@@ -40,18 +46,30 @@ body::before {
   padding: 15px;
 }
 
+.product-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(57, 255, 20, 0.1);
+  border-radius: 12px;
+  padding: 8px;
+  text-align: center;
+}
+
 .btn {
   background: transparent;
   color: var(--neon-green);
   border: 1px solid var(--neon-green);
   width: 100%;
-  padding: 10px;
-  border-radius: 6px;
-  font-weight: bold;
+  padding: 8px;
+  border-radius: 5px;
   cursor: pointer;
+  font-weight: bold;
 }
 
-.btn:hover {
-  background: var(--neon-green);
-  color: black;
+.btn:hover { background: var(--neon-green); color: black; }
+
+.bottom-nav {
+  position: fixed; bottom: 0; max-width: 480px; width: 100%;
+  background: rgba(0,0,0,0.9); display: flex; 
+  justify-content: space-around; padding: 12px 0;
+  border-top: 1px solid rgba(57, 255, 20, 0.2);
 }
