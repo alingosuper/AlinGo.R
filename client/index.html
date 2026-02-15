@@ -5,8 +5,132 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AlinGo | Marketplace</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ⚡ کور ڈیزائن ایلیمنٹس */
+        :root {
+            --neon-green: #39FF14;
+            --deep-black: #0a0a0a;
+            --electric-glow: rgba(57, 255, 20, 0.3);
+        }
+
+        body {
+            background-color: var(--deep-black);
+            color: white;
+            margin: 0;
+            overflow-x: hidden;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* ⚡ متحرک بجلی والا بیک گراؤنڈ */
+        .lightning-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .bolt {
+            position: absolute;
+            width: 1px;
+            height: 200%;
+            background: linear-gradient(to bottom, transparent, var(--neon-green), transparent);
+            opacity: 0.1;
+            transform: rotate(35deg);
+            filter: blur(1px);
+            animation: move-bolt 5s linear infinite;
+        }
+
+        @keyframes move-bolt {
+            0% { transform: translate(-100%, -100%) rotate(35deg); }
+            100% { transform: translate(100%, 100%) rotate(35deg); }
+        }
+
+        /* ⚡ کارڈز اور بٹنز کا نیا ڈیزائن */
+        .main-header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--electric-glow);
+        }
+
+        .app-logo {
+            height: 60px;
+            filter: drop-shadow(0 0 10px var(--neon-green));
+        }
+
+        .glow-text {
+            color: var(--neon-green);
+            text-shadow: 0 0 10px var(--neon-green);
+            margin-top: 5px;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--electric-glow);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .product-card:hover {
+            border-color: var(--neon-green);
+            box-shadow: 0 0 20px var(--electric-glow);
+            transform: translateY(-5px);
+        }
+
+        .price {
+            color: var(--neon-green);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* ⚡ الیکٹرک بٹن */
+        .btn {
+            background: transparent;
+            color: var(--neon-green);
+            border: 1px solid var(--neon-green);
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--neon-green);
+            color: black;
+            box-shadow: 0 0 15px var(--neon-green);
+        }
+
+        .bottom-nav {
+            background: #000;
+            border-top: 1px solid var(--electric-glow);
+            padding: 10px 0;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.5);
+        }
+
+        .nav-item {
+            color: #888;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-item:hover {
+            color: var(--neon-green);
+        }
+    </style>
 </head>
 <body>
+
+    <div class="lightning-bg">
+        <div class="bolt" style="left: 20%; animation-delay: 0s;"></div>
+        <div class="bolt" style="left: 60%; animation-delay: 2s;"></div>
+        <div class="bolt" style="left: 90%; animation-delay: 1s;"></div>
+    </div>
 
     <header class="main-header">
         <img src="/public/logo.png" alt="AlinGo Logo" class="app-logo">
