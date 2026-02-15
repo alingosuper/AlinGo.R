@@ -21,12 +21,12 @@ app.post('/api/create-order', (req, res) => {
 // فائر بیس کیز فراہم کرنا (Vercel Env سے)
 app.get('/api/get-firebase-config', (req, res) => {
     res.json({
-        apiKey: process.env.FB_API_KEY,
-        authDomain: process.env.FB_AUTH_DOMAIN,
-        projectId: process.env.FB_PROJECT_ID,
-        storageBucket: process.env.FB_STORAGE_BUCKET,
-        messagingSenderId: process.env.FB_SENDER_ID,
-        appId: process.env.FB_APP_ID
+        apiKey: process.env.NEXTH_FIREBASE_API_KEY,
+        authDomain: process.env.NEXTH_FIREBASE_AUTH_DOMAIN,
+        projectId: process.env.NEXTH_FIREBASE_PROJECT_ID,
+        storageBucket: process.env.NEXTH_FIREBASE_STORAGE_BUCKET,
+        messagingSenderId: process.env.NEXTH_FIREBASE_SENDER_ID,
+        appId: process.env.NEXTH_FIREBASE_APP_ID
     });
 });
 
