@@ -1,62 +1,81 @@
-<!DOCTYPE html>
-<html lang="ur" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AlinGo | سیلر پینل</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <div class="app-container">
-        <header>
-            <img src="/public/logo.png" alt="Logo" class="app-logo">
-            <h2 class="glow-text">نئی پروڈکٹ شامل کریں</h2>
-        </header>
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 
-        <form id="seller-form" class="login-container">
-            <div class="input-group">
-                <input type="text" id="p-name" placeholder="پروڈکٹ کا نام" required>
-            </div>
-            <div class="input-group">
-                <input type="number" id="p-price" placeholder="قیمت (Rs)" required>
-            </div>
-            <div class="input-group">
-                <input type="text" id="p-img" placeholder="تصویر کا لنک (URL)">
-            </div>
-            <textarea id="p-desc" class="input-group" style="height:100px; padding:10px; color:white;" placeholder="پروڈکٹ کی تفصیل"></textarea>
-            
-            <button type="submit" class="btn">مارکیٹ میں لائیو کریں 🚀</button>
-        </form>
-    </div>
+let db;
+const sList = document.getElementById('seller-product-list');
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+// 1. Vercel سے کیز لے کر ایپ شروع کریں
+async function initSellerApp() {
+    try {
+        const response = await fetch('/api/get-firebase-config');
+        const firebaseConfig = await response.json();
 
-        // آپ کی Firebase Config
-        const firebaseConfig = { /* ... وہی پرانی کیز ... */ };
         const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
+        db = getFirestore(app);
+        
+        console.log("Seller Panel Connected! ⚡");
+        loadMyProducts(); // موجودہ پروڈکٹس لوڈ کریں
+        
+    } catch (error) {
+        alert("کنکشن میں خرابی: " + error.message);
+    }
+}
 
-        document.getElementById('seller-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const btn = e.target.querySelector('button');
-            btn.innerText = "اپلوڈنگ...";
+// 2. نئی پروڈکٹ اپلوڈ کرنے کا فنکشن
+document.getElementById('upload-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.innerText = "اپلوڈ ہو رہا ہے...";
 
-            try {
-                await addDoc(collection(db, "products"), {
-                    name: document.getElementById('p-name').value,
-                    price: document.getElementById('p-price').value,
-                    image: document.getElementById('p-img').value || "/public/logo.png",
-                    description: document.getElementById('p-desc').value,
-                    createdAt: Date.now()
-                });
-                alert("پروڈکٹ کامیابی سے شامل ہوگئی!");
-                window.location.href = "index.html";
-            } catch (error) {
-                alert("خرابی: " + error.message);
-            }
+    try {
+        await addDoc(collection(db, "products"), {
+            name: document.getElementById('p-name').value,
+            price: document.getElementById('p-price').value,
+            image: document.getElementById('p-img').value || "/public/logo.png",
+            time: Date.now()
         });
-    </script>
-</body>
-</html>
+        alert("پروڈکٹ مارکیٹ میں لائیو ہوگئی! ✅");
+        document.getElementById('upload-form').reset();
+        loadMyProducts(); // لسٹ اپڈیٹ کریں
+    } catch (err) {
+        alert("اپلوڈ میں مسئلہ: " + err.message);
+    } finally {
+        btn.disabled = false;
+        btn.innerText = "مارکیٹ میں لائیو کریں ⚡";
+    }
+});
+
+// 3. سیلر کی اپنی پروڈکٹس دکھانے کا فنکشن
+async function loadMyProducts() {
+    sList.innerHTML = "<p style='color:#00ff00'>لوڈنگ...</p>";
+    const querySnapshot = await getDocs(collection(db, "products"));
+    sList.innerHTML = "";
+
+    querySnapshot.forEach((documentObj) => {
+        const p = documentObj.data();
+        const id = documentObj.id;
+        
+        const div = document.createElement('div');
+        div.className = 's-card'; // یہ کلاس ہم نے پہلے CSS میں دی تھی
+        div.innerHTML = `
+            <img src="${p.image || '/public/logo.png'}" style="width:50px; border-radius:5px;">
+            <div style="flex-grow:1; margin-right:15px;">
+                <strong>${p.name}</strong><br>
+                <span style="color: #00ff00;">Rs. ${p.price}</span>
+            </div>
+            <button class="delete-btn" onclick="deleteItem('${id}')" style="background:#ff4444; border:none; color:white; padding:5px; border-radius:4px;">مٹائیں</button>
+        `;
+        sList.appendChild(div);
+    });
+}
+
+// ڈیلیٹ کرنے کا فنکشن
+window.deleteItem = async (docId) => {
+    if(confirm("کیا آپ اسے ختم کرنا چاہتے ہیں؟")) {
+        await deleteDoc(doc(db, "products", docId));
+        loadMyProducts();
+    }
+};
+
+initSellerApp();
