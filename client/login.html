@@ -1,34 +1,50 @@
 <!DOCTYPE html>
-<html lang="ur" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AlinGo | log in</title>
+    <title>Login | AlinGo</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-    <div class="login-container">
-        <img src="/public/logo.png" alt="AlinGo" class="app-logo">
-        <h2 class="glow-text">Well Come</h2>
-        <p style="text-align: center; font-size: 0.9em; color: #888;">جاری رکھنے کے لیے اپنا فون نمبر درج کریں</p>
-
-        <div id="phone-section">
-            <div class="input-group">
-                <span class="prefix">+92</span>
-                <input type="tel" id="phone-number" placeholder="3001234567" maxlength="10">
-            </div>
-            <button id="send-otp-btn" class="btn">OTP Send ⚡</button>
+    <div class="login-container" style="padding: 20px; text-align: center; margin-top: 50px;">
+        <img src="/logo.png" class="app-logo" style="width: 100px;">
+        <h2 class="glow-text">Welcome Back</h2>
+        
+        <div id="otp-section">
+            <input type="tel" id="phone" placeholder="Enter Phone Number" style="width: 90%; padding: 12px; margin: 10px 0; border-radius: 8px; border: 1px solid var(--neon-green); background: #111; color: white;">
+            <button class="btn" onclick="sendOTP()">Send OTP</button>
         </div>
 
-        <div id="otp-section" style="display: none; margin-top: 20px;">
-            <input type="number" id="otp-code" class="otp-input" placeholder="- - - - - -">
-            <button id="verify-otp-btn" class="btn">تصدیق کریں ✅</button>
+        <div id="verify-section" style="display: none;">
+            <input type="number" id="otp-code" placeholder="Enter 6-Digit OTP" style="width: 90%; padding: 12px; margin: 10px 0; border-radius: 8px; border: 1px solid var(--neon-green); background: #111; color: white;">
+            <button class="btn" onclick="verifyOTP()">Verify & Login</button>
         </div>
-
-        <div id="recaptcha-container"></div>
     </div>
 
-    <script type="module" src="js/auth.js"></script>
+    <script>
+        async function sendOTP() {
+            const phone = document.getElementById('phone').value;
+            if(!phone) return alert("Please enter phone number");
+            
+            const res = await fetch('/api/send-otp', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ phone })
+            });
+            const data = await res.json();
+            if(data.success) {
+                alert("Demo OTP: " + data.otp);
+                document.getElementById('otp-section').style.display = 'none';
+                document.getElementById('verify-section').style.display = 'block';
+            }
+        }
+
+        function verifyOTP() {
+            // Simple simulation for now
+            alert("Login Successful!");
+            location.href = 'index.html';
+        }
+    </script>
 </body>
 </html>
