@@ -4,7 +4,7 @@ import { getFirestore, collection, getDocs } from "https://www.gstatic.com/fireb
 // گلوبل ویری ایبلز
 let db;
 const productList = document.getElementById('product-list');
-const DEFAULT_LOGO = "/logo.png"; // ورسل پر پبلک فولڈر کے لیے درست پاتھ
+const DEFAULT_LOGO = "/logoa"; // ورسل پر پبلک فولڈر کے لیے درست پاتھ
 
 /**
  * ایپ کو شروع کرنے اور کنفگریشن حاصل کرنے کا فنکشن
