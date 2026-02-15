@@ -3,7 +3,7 @@ import { getFirestore, collection, getDocs } from "https://www.gstatic.com/fireb
 
 let db;
 const productList = document.getElementById('product-list');
-const DEFAULT_LOGO = "/logoa"; // آپ کی فرمائش کے مطابق نام تبدیل کر دیا گیا
+const DEFAULT_LOGO = "/logoa.png"; // آپ کی فرمائش کے مطابق نام تبدیل کر دیا گیا
 
 async function startApp() {
     try {
