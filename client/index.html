@@ -1,66 +1,29 @@
 <!DOCTYPE html>
 <html lang="ur" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AlinGo | Marketplace</title>
-    <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlinGo | Marketplace</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <header class="main-header">
-        <img src="/public/logoa" alt="AlinGo Logo" class="app-logo">
-        <h1 class="glow-text">AlinGo</h1>
-    </header>
+    <header class="main-header">
+        <img src="/logoa" alt="AlinGo Logo" class="app-logo">
+        <h1 class="glow-text" style="color:#39FF14; text-align:center;">AlinGo</h1>
+    </header>
 
-    <main class="app-container">
-        <div class="product-grid" id="product-list">
-            
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=200" class="product-img">
-                <div class="product-info">
-                    <h3>Gaming Headphones</h3>
-                    <p class="price">Rs. 8,500</p>
-                    <button class="btn" onclick="location.href='login.html'">خریدیں ⚡</button>
-                </div>
-            </div>
+    <main class="app-container">
+        <div class="product-grid" id="product-list" style="display:grid; grid-template-columns:1fr 1fr; gap:10px; padding:10px;">
+            </div>
+    </main>
 
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=200" class="product-img">
-                <div class="product-info">
-                    <h3>Smart Watch</h3>
-                    <p class="price">Rs. 12,000</p>
-                    <button class="btn" onclick="location.href='login.html'">خریدیں ⚡</button>
-                </div>
-            </div>
+    <nav class="bottom-nav">
+        <button class="nav-item" onclick="location.href='index.html'">🏠 ہوم</button>
+        <button class="nav-item" onclick="window.location.href='/seller.html'">📤 بیچیں</button>
+        <button class="nav-item" onclick="location.href='login.html'">👤 لاگ ان</button>
+    </nav>
 
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?w=200" class="product-img">
-                <div class="product-info">
-                    <h3>Wall Clock Neon</h3>
-                    <p class="price">Rs. 3,200</p>
-                    <button class="btn" onclick="location.href='login.html'">خریدیں ⚡</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1583573636246-18cb2246697f?w=200" class="product-img">
-                <div class="product-info">
-                    <h3>Electric Trimmer</h3>
-                    <p class="price">Rs. 4,500</p>
-                    <button class="btn" onclick="location.href='login.html'">خریدیں ⚡</button>
-                </div>
-            </div>
-
-        </div>
-    </main>
-
-    <nav class="bottom-nav">
-        <button class="nav-item" onclick="location.href='index.html'">🏠 ہوم</button>
-        <button class="nav-item" onclick="window.location.href='/seller.html'">📤 بیچیں</button>
-        <button class="nav-item" onclick="location.href='login.html'">👤 Log In</button>
-    </nav>
-
-    <script type="module" src="js/app.js"></script>
+    <script type="module" src="js/app.js"></script>
 </body>
-</html> 
+</html>
