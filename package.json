@@ -1,7 +1,6 @@
 {
   "name": "alingo-m",
   "version": "1.0.0",
-  "description": "AlinGo Mobile Marketplace with Firebase and OTP",
   "main": "api/server.js",
   "scripts": {
     "start": "node api/server.js"
@@ -11,6 +10,5 @@
   },
   "engines": {
     "node": "20.x"
-  },
-  "license": "ISC"
+  }
 }
