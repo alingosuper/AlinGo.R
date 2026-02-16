@@ -1,11 +1,11 @@
 {
   "version": 2,
   "builds": [
-    { "src": "server/server.js", "use": "@vercel/node" }
+    { "src": "api/server.js", "use": "@vercel/node" }
   ],
   "rewrites": [
     { "source": "/logo.png", "destination": "/public/logo.png" },
-    { "source": "/api/(.*)", "destination": "/server/server.js" },
+    { "source": "/api/(.*)", "destination": "/api/server.js" },
     { "source": "/css/(.*)", "destination": "/client/css/$1" },
     { "source": "/js/(.*)", "destination": "/client/js/$1" },
     { "source": "/seller.html", "destination": "/client/seller.html" },
