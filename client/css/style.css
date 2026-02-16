@@ -1,75 +1,10 @@
-:root {
-  --neon-green: #39FF14;
-  --deep-black: #0a0a0a;
-  --ajrak-blue: rgba(173, 216, 230, 0.04);
-}
-
-body {
-  margin: 0 auto;
-  max-width: 480px;
-  background: var(--deep-black);
-  color: white;
-  font-family: 'Segoe UI', sans-serif;
-  min-height: 100vh;
-  position: relative;
-  overflow-x: hidden;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background-image: 
-    radial-gradient(circle at 50% 50%, var(--ajrak-blue) 2px, transparent 2px),
-    linear-gradient(45deg, var(--ajrak-blue) 1px, transparent 1px);
-  background-size: 40px 40px, 80px 80px;
-  z-index: -1;
-}
-
-.app-logo {
-  display: block;
-  margin: 15px auto;
-  width: 70px;
-  filter: drop-shadow(0 0 8px var(--neon-green));
-}
-
-.glow-text {
-  color: var(--neon-green);
-  text-shadow: 0 0 10px var(--neon-green);
-  text-align: center;
-}
-
-.product-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  padding: 15px;
-}
-
-.product-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(57, 255, 20, 0.1);
-  border-radius: 12px;
-  padding: 8px;
-  text-align: center;
-}
-
-.btn {
-  background: transparent;
-  color: var(--neon-green);
-  border: 1px solid var(--neon-green);
-  width: 100%;
-  padding: 8px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.btn:hover { background: var(--neon-green); color: black; }
-
-.bottom-nav {
-  position: fixed; bottom: 0; max-width: 480px; width: 100%;
-  background: rgba(0,0,0,0.9); display: flex; 
-  justify-content: space-around; padding: 12px 0;
-  border-top: 1px solid rgba(57, 255, 20, 0.2);
-}
+:root { --neon: #39FF14; --bg: #0a0a0a; --ajrak: rgba(173, 216, 230, 0.04); }
+body { background: var(--bg); color: white; font-family: sans-serif; margin: 0; padding-bottom: 70px; }
+body::before { content: ""; position: fixed; top: 0; width: 100%; height: 100%; background-image: radial-gradient(circle, var(--ajrak) 2px, transparent 2px); background-size: 30px 30px; z-index: -1; }
+.app-logo { display: block; margin: 10px auto; width: 60px; filter: drop-shadow(0 0 5px var(--neon)); }
+.glow-text { color: var(--neon); text-align: center; text-shadow: 0 0 10px var(--neon); }
+.product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
+.product-card { background: #111; border: 1px solid #222; border-radius: 10px; padding: 10px; text-align: center; }
+.btn { background: var(--neon); color: black; border: none; padding: 8px; width: 100%; border-radius: 5px; font-weight: bold; cursor: pointer; }
+.bottom-nav { position: fixed; bottom: 0; width: 100%; background: #000; display: flex; border-top: 1px solid #333; padding: 15px 0; }
+.nav-btn { flex: 1; background: none; color: white; border: none; font-size: 14px; }
