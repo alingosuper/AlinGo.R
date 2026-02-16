@@ -1,19 +1,12 @@
 const express = require('express');
 const app = express();
-app.use(express.json());
 
-const otps = {}; 
+app.use(express.json());
 
 app.post('/api/send-otp', (req, res) => {
     const { phone } = req.body;
     const otp = Math.floor(100000 + Math.random() * 900000);
-    otps[phone] = otp;
-    res.json({ success: true, otp }); 
-});
-
-app.post('/api/create-order', (req, res) => {
-    const orderId = "AL-" + Date.now(); [cite: 2026-02-14]
-    res.json({ success: true, orderId });
+    res.json({ success: true, otp });
 });
 
 app.get('/api/get-firebase-config', (req, res) => {
