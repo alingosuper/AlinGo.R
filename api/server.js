@@ -1,14 +1,8 @@
 const express = require('express');
 const app = express();
-
 app.use(express.json());
 
-app.post('/api/send-otp', (req, res) => {
-    const { phone } = req.body;
-    const otp = Math.floor(100000 + Math.random() * 900000);
-    res.json({ success: true, otp });
-});
-
+// Firebase Config Route using NEXTH variables
 app.get('/api/get-firebase-config', (req, res) => {
     res.json({
         apiKey: process.env.NEXTH_FIREBASE_API_KEY,
@@ -20,4 +14,15 @@ app.get('/api/get-firebase-config', (req, res) => {
     });
 });
 
-module.exports = app;
+app.post('/api/send-otp', (req, res) => {
+    const { phone } = req.body;
+    const otp = Math.floor(100000 + Math.random() * 900000);
+    res.json({ success: true, otp, message: "Demo OTP sent" });
+});
+
+app.post('/api/create-order', (req, res) => {
+    const orderId = "AL-" + Date.now();
+    res.json({ success: true, orderId });
+});
+
+module.exports = app; // Export for Vercel
