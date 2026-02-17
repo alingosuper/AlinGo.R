@@ -26,3 +26,10 @@ app.post('/api/create-order', (req, res) => {
 });
 
 module.exports = app; // Export for Vercel
+
+
+// پورٹ سیٹ کریں (Render خود کار طور پر پورٹ فراہم کرتا ہے)
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
