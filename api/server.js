@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
+
 app.use(express.json());
 
+// Firebase Config API
 app.get('/api/get-firebase-config', (req, res) => {
     res.json({
         apiKey: process.env.NEXTH_FIREBASE_API_KEY,
@@ -13,4 +15,9 @@ app.get('/api/get-firebase-config', (req, res) => {
     });
 });
 
-module.exports = app; // ورسل کے لیے یہ لائن لازمی ہے
+// Test Route to verify Node 24
+app.get('/api/status', (req, res) => {
+    res.json({ status: "Online", engine: "Node 24.x", project: "AlinGo.M" });
+});
+
+module.exports = app; // Vercel handles the listening part
