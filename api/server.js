@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 app.use(express.json());
 
-// Firebase Config Route using NEXTH variables
 app.get('/api/get-firebase-config', (req, res) => {
     res.json({
         apiKey: process.env.NEXTH_FIREBASE_API_KEY,
@@ -14,22 +13,4 @@ app.get('/api/get-firebase-config', (req, res) => {
     });
 });
 
-app.post('/api/send-otp', (req, res) => {
-    const { phone } = req.body;
-    const otp = Math.floor(100000 + Math.random() * 900000);
-    res.json({ success: true, otp, message: "Demo OTP sent" });
-});
-
-app.post('/api/create-order', (req, res) => {
-    const orderId = "AL-" + Date.now();
-    res.json({ success: true, orderId });
-});
-
-module.exports = app; // Export for Vercel
-
-
-// پورٹ سیٹ کریں (Render خود کار طور پر پورٹ فراہم کرتا ہے)
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+module.exports = app; // ورسل کے لیے یہ لائن لازمی ہے
